@@ -1,0 +1,35 @@
+/* ==== Google font ==== */
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600);*/
+
+body {
+
+}
+
+
+hi,h2,h3,h4,h6 {
+	color:#333;
+	line-height:1.1em;
+}
+
+
+.text-center i {
+    font-size: 25px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    color: #fff;
+    padding: 12px;
+    background: #00c4cc;
+    background-image: linear-gradient(45deg, #60bdfc 0%, #6381e5 100%);
+    border-radius: 20%;
+}
+
+.hi-icon-effect i.fa:hover {
+	background:#fff;
+	color: #6381e5;
+	-webkit-transition: color 300ms, background-color 300ms;
+  -moz-transition: color 300ms, background-color 300ms;
+  -o-transition:  color 300ms, background-color 300ms;
+  transition:  color 300ms, background-color 300ms;
+}
+
+

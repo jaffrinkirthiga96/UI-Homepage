@@ -1,0 +1,117 @@
+{% extends "hyperbase/basic.html" %}
+
+{% block head_js %}
+  {{ super() }}
+  {% with filename="welcome" %}
+    {% include "hyperbase/partials/_script_tag.html" %}
+  {% endwith %}
+{% endblock %}
+
+{% block title %}{{ _("Welcome") }}{% endblock %}
+
+{% block body %}
+<div class="container welcome">
+  {% include 'hyperbase/flash_wrapper.html' %}
+  {% if sticky_mesg %}
+  <div class='container_user_info'>
+        {% for _msg in sticky_mesg %}
+	  {% if _msg %}
+          <span>{{ _msg|safe }}</span>
+          {% endif %}
+        {% endfor %}
+  </div>
+  {% endif %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 style="text-align: center">{{ _("Dashboard Modules") }}</h2>
+          </div>
+          <!--<div class="col-md-6">
+            <div class="search-container pull-right">
+                <i class="fa fa-search"></i>
+                <span class="search"></span>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <!--<img class="loading" src="/static/assets/images/loading.gif"/> -->
+      <div id="dash_modules" style="padding:10px 5px 10px 5px;"width="100%">
+
+      <div class="row">
+          <div class="col-md-11">
+          {% if dashmodules %}
+              {% for dashmod in dashmodules %}
+                  <div class="text-center">
+                        <div class="col-md-2">
+                            <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" >
+                               {% if 'Payment Module' in dashmod.dashmodule   %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-credit-card"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'All Dashboards' in dashmod.dashmodule %}
+                                <a href=    "/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-tachometer"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                 {% elif 'Support Module Landmark' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-ticket"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'Dev' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-wrench"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'Performance Optimization Module' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-clock-o"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'Support Module' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-cogs"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'Debug' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-search-plus"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% elif 'Emi Module' in dashmod.dashmodule %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-money"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% else %}
+                                <a href="/hyperbase/dashboards/{{ dashmod.id }}"><i class="fa fa-file-text"></i></a>
+                                <h5 style="color: #000; font-size: 14px;font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;font-weight: 400;" >{{ dashmod.dashmodule }}</h5>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                  </div>
+              {% endfor %}
+          {% elif not dashmodules %}
+            <h4>No Modules Assigned</h4>
+          {% endif %}
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+.container_user_info {
+	padding: 15px;
+    	margin-bottom: 20px;
+    	border: 1px solid transparent;
+    	border-radius: 2px;
+	/*background-color: #fff1cb;*/
+	//background-color: #ffdf89;
+	background-color: #ffe2bc;
+    	border-color: #ffe2bc;
+    	/*color: #ca9601;*/
+	color: black;
+	//font-weight: bold;
+	font-size: 15px;
+}
+.container_user_info span {
+        margin-right: 15px;
+}
+
+</style>
+{% endblock %}
+
